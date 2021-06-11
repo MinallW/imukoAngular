@@ -1,0 +1,152 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registrar Persona</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Codigo Interno" formControlName="internalCode">
+	    <mat-error *ngIf="addressForm.controls['internalCode'].hasError('required')">
+	      <strong>El código es necesario</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Primer Nombre" formControlName="firstName">
+	    <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Segundo nombre" formControlName="secondName">
+	    <mat-error *ngIf="addressForm.controls['secondName'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Primer Apellido" formControlName="lastName">
+	    <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Segundo Apellido" formControlName="mothersLastName">
+	    <mat-error *ngIf="addressForm.controls['mothersLastName'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Correo Electrónico" formControlName="address">
+	    <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+	      El correo es <strong>necesario</strong>
+	    </mat-error>
+	  </mat-form-field>
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Fecha de nacimiento" formControlName="birthDate">
+	    <mat-error *ngIf="addressForm.controls['birthDate'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row" *ngIf="!hasUnitNumber">
+	<div class="col">
+	  <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">
+	    + Añade más correos
+	  </button>
+	</div>
+      </div>
+      <div class="row" *ngIf="hasUnitNumber">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Correo Electrónico 2" formControlName="address">
+	  </mat-form-field>
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Correo Electrónico 3" formControlName="address">
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Identificación" formControlName="city">
+	    <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+	      Identificación <strong>requerida</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+	<div class="row">
+	  <div class="col">
+	    <mat-radio-group formControlName="shipping">
+	      <mat-radio-button value="Cédula de ciudadanía">Cédula</mat-radio-button>
+	      <mat-radio-button value="Tarjeta de identidad">Tarjeta de identidad</mat-radio-button>
+	      <mat-radio-button value="Cédula de extranjería">Cédula de extranjería</mat-radio-button>
+	      <mat-radio-button value="Otra">Otra</mat-radio-button>
+	    </mat-radio-group>
+	  </div>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Lugar de expedición" formControlName="expedition">
+	    <mat-error *ngIf="addressForm.controls['expedition'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	  <mat-form-field class="full-width">
+	    <input matInput placeholder="Fecha de expedición" formControlName="expeditionDate">
+	    <mat-error *ngIf="addressForm.controls['expeditionDate'].hasError('required')">
+	      <strong>requerido</strong>
+	    </mat-error>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <mat-form-field class="full-width">
+	    <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
+	    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+	  </mat-form-field>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col">
+	  <h4>Estado civil</h4>
+	  <mat-radio-group formControlName="shipping">
+	    <mat-radio-button value="Soltero">Soltero</mat-radio-button>
+	    <mat-radio-button value="Casado">Casado</mat-radio-button>
+	  </mat-radio-group>
+	</div>
+	<div class="col">
+	  <h4>Sexo</h4>
+	  <mat-radio-group formControlName="shipping">
+	    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+	    <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+	    <mat-radio-button value="Otro">Otro</mat-radio-button>
+	  </mat-radio-group>
+	</div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
