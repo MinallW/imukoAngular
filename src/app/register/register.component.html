@@ -1,10 +1,10 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
-    <mat-card-header>
+    <mat-card-header class="center">
       <mat-card-title>Registrar Persona</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="row">
+      <div class="row justify-content-center">
 	<div class="col">
 	  <mat-form-field class="full-width">
 	    <input matInput placeholder="Codigo Interno" formControlName="internalCode">
@@ -53,8 +53,8 @@
       <div class="row">
 	<div class="col">
 	  <mat-form-field class="full-width">
-	    <input matInput placeholder="Correo Electrónico" formControlName="address">
-	    <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+	    <input matInput placeholder="Correo Electrónico" formControlName="correo">
+	    <mat-error *ngIf="addressForm.controls['correo'].hasError('required')">
 	      El correo es <strong>necesario</strong>
 	    </mat-error>
 	  </mat-form-field>
@@ -76,25 +76,25 @@
       <div class="row" *ngIf="hasUnitNumber">
 	<div class="col">
 	  <mat-form-field class="full-width">
-	    <input matInput placeholder="Correo Electrónico 2" formControlName="address">
+	    <input matInput placeholder="Correo Electrónico 2" formControlName="correo1">
 	  </mat-form-field>
 	  <mat-form-field class="full-width">
-	    <input matInput placeholder="Correo Electrónico 3" formControlName="address">
+	    <input matInput placeholder="Correo Electrónico 3" formControlName="correo2">
 	  </mat-form-field>
 	</div>
       </div>
       <div class="row">
 	<div class="col">
 	  <mat-form-field class="full-width">
-	    <input matInput placeholder="Identificación" formControlName="city">
-	    <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+	    <input matInput placeholder="Identificación" formControlName="identification">
+	    <mat-error *ngIf="addressForm.controls['identification'].hasError('required')">
 	      Identificación <strong>requerida</strong>
 	    </mat-error>
 	  </mat-form-field>
 	</div>
 	<div class="row">
 	  <div class="col">
-	    <mat-radio-group formControlName="shipping">
+	    <mat-radio-group formControlName="tipo">
 	      <mat-radio-button value="Cédula de ciudadanía">Cédula</mat-radio-button>
 	      <mat-radio-button value="Tarjeta de identidad">Tarjeta de identidad</mat-radio-button>
 	      <mat-radio-button value="Cédula de extranjería">Cédula de extranjería</mat-radio-button>
@@ -121,23 +121,15 @@
       </div>
       <div class="row">
 	<div class="col">
-	  <mat-form-field class="full-width">
-	    <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
-	    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-	  </mat-form-field>
-	</div>
-      </div>
-      <div class="row">
-	<div class="col">
 	  <h4>Estado civil</h4>
-	  <mat-radio-group formControlName="shipping">
+	  <mat-radio-group formControlName="civilState">
 	    <mat-radio-button value="Soltero">Soltero</mat-radio-button>
 	    <mat-radio-button value="Casado">Casado</mat-radio-button>
 	  </mat-radio-group>
 	</div>
 	<div class="col">
 	  <h4>Sexo</h4>
-	  <mat-radio-group formControlName="shipping">
+	  <mat-radio-group formControlName="sexo">
 	    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
 	    <mat-radio-button value="Femenino">Femenino</mat-radio-button>
 	    <mat-radio-button value="Otro">Otro</mat-radio-button>
@@ -146,7 +138,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit" class="center">Submit</button>
     </mat-card-actions>
   </mat-card>
 </form>
