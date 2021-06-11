@@ -33,10 +33,41 @@ export class RegisterComponent {
 
     hasUnitNumber = false;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+	private fb: FormBuilder,
+	private epsService: EpsService
+    ) {}
 
     onSubmit(): void {
-	console.log(this.addressForm);
-	EpsService.getEps();
+	const json = {
+
+	    codigo_interno: this.addressForm.value.internalCode,
+	    primer_nombre: this.addressForm.value.firstName,
+	    segundo_nombre: this.addressForm.value.secondName,
+	    primer_apellido: this.addressForm.value.lastName,
+	    segundo_apellido: this.addressForm.value.mothersLastName,
+	    identificacion: {
+		numero: this.addressForm.value.identification,
+		fecha_expedicion: this.addressForm.value.expeditionDate,
+		lugar_expedicion: this.addressForm.value.expedition,
+		tipo: this.addressForm.value.tipo
+	    },
+	    estado_civil: this.addressForm.value.civilState,
+	    sexo: this.addressForm.value.sexo,
+	    correo_electronico: {
+		correo: this.addressForm.value.correo,
+		correo1: this.addressForm.value.correo1,
+		correo2: this.addressForm.value.correo2
+	    },
+	    fecha_nacimiento: this.addressForm.value.birthDate
+
+	}
+
+	console.log(json.codigo_interno);
+
+	this.epsService.addPersons(json)
+	    .subscribe((response: any) => {
+		console.log(response)
+	    })
     }
 }

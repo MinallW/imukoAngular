@@ -1,35 +1,19 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-) { }
+@Injectable({providedIn: 'root'})
 
-private epsUrl = 'eps';  // URL to web api
+export class EpsService{
+    constructor(
+	private http: HttpClient
+    ) { }
 
-private log(message: string) {
-    this.messageService.add(`epsService: ${message}`);
+    getPersons(): any {
+	return this.http.get("http://localhost:3000/personas");
+    }
+
+    addPersons(form): any {
+	return this.http.post("http://localhost:3000/personas", form);
+    }
+
 }
-
-getEps(): Observable<Eps[]> {
-    return this.http.get<Eps[]>(this.epsUrl)
-	.pipe(
-	    tap(_ => this.log('fetched eps')),
-	    catchError(this.handleError<Eps[]>('getEps', []))
-	);
-}
-
-private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-	// TODO: send the error to remote logging infrastructure
-	console.error(error); // log to console instead
-
-	// TODO: better job of transforming error for user consumption
-	this.log(`${operation} failed: ${error.message}`);
-
-	// Let the app keep running by returning an empty result.
-	return of(result as T);
-    };
-};
